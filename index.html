@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XYZGYM — Transform Your Body</title>
+  <meta name="description" content="High-energy animated gym demo website with anime.js and Tailwind CSS" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background-color: #0a0a0a; color: #f5f5f5; }
+    .hero-bg {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url('https://images.unsplash.com/photo-1599058917212-d750089bc07b?auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    .whatsapp-cta { position: fixed; right: 18px; bottom: 18px; z-index: 60; }
+    .pulse { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6);} 70% { box-shadow: 0 0 0 15px rgba(34,197,94,0);} 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0);} }
+    .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 90px; z-index:70; }
+  </style>
+
+  <!-- Anime.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+</head>
+<body class="antialiased font-sans">
+
+  <!-- NAVBAR -->
+  <nav class="bg-black/80 backdrop-blur sticky top-0 z-50 border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 font-bold text-2xl text-red-500 tracking-wider">
+        <span>XYZGYM</span>
+      </a>
+      <div class="hidden md:flex items-center gap-6">
+        <a href="#services" class="hover:text-red-500 transition">Services</a>
+        <a href="#trainers" class="hover:text-red-500 transition">Trainers</a>
+        <a href="#pricing" class="hover:text-red-500 transition">Pricing</a>
+        <a href="#contact" class="hover:text-red-500 transition">Contact</a>
+        <button onclick="openWhatsApp()" class="px-4 py-2 bg-green-500 text-black font-semibold rounded-md hover:bg-green-400 transition">Chat</button>
+      </div>
+      <button id="mobile-menu-btn" class="md:hidden text-2xl">☰</button>
+    </div>
+    <div id="mobile-menu" class="hidden px-6 pb-4 text-white bg-black/90">
+      <a href="#services" class="block py-2">Services</a>
+      <a href="#trainers" class="block py-2">Trainers</a>
+      <a href="#pricing" class="block py-2">Pricing</a>
+      <a href="#contact" class="block py-2">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero-bg h-screen flex items-center justify-center text-center px-6">
+    <div>
+      <h1 id="hero-title" class="text-5xl md:text-6xl font-extrabold text-white leading-tight">Push Beyond Limits</h1>
+      <p class="mt-6 text-xl text-gray-300 max-w-2xl mx-auto">Unleash your potential with state-of-the-art training, elite coaches, and unstoppable energy.</p>
+      <div class="mt-8 flex justify-center gap-4">
+        <button onclick="openWhatsApp('I want to join XYZGYM!')" class="px-6 py-3 bg-red-600 text-white rounded-lg shadow-lg hover:bg-red-500 transition">Join Now</button>
+        <button onclick="openWhatsApp('Tell me about your pricing plans!')" class="px-6 py-3 border border-gray-400 text-white rounded-lg hover:bg-gray-700 transition">See Plans</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-20 bg-black">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center text-red-500">Our Services</h2>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6 bg-gray-900 rounded-lg shadow-xl hover:scale-105 transition" data-anim>
+          <h3 class="font-semibold text-xl text-white">Personal Training</h3>
+          <p class="mt-3 text-gray-400">One-on-one coaching tailored to your goals.</p>
+        </div>
+        <div class="p-6 bg-gray-900 rounded-lg shadow-xl hover:scale-105 transition" data-anim>
+          <h3 class="font-semibold text-xl text-white">HIIT & Strength</h3>
+          <p class="mt-3 text-gray-400">High intensity workouts that push you harder.</p>
+        </div>
+        <div class="p-6 bg-gray-900 rounded-lg shadow-xl hover:scale-105 transition" data-anim>
+          <h3 class="font-semibold text-xl text-white">Nutrition Plans</h3>
+          <p class="mt-3 text-gray-400">Fuel your gains with expert diet advice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAINERS -->
+  <section id="trainers" class="py-20 bg-gray-950">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center text-red-500">Meet the Trainers</h2>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-gray-900 rounded-lg overflow-hidden shadow-xl hover:scale-105 transition" data-anim>
+          <img src="https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?auto=format&fit=crop&w=600&q=80" class="w-full h-56 object-cover"/>
+          <div class="p-4">
+            <h3 class="text-xl font-semibold text-white">Arjun Das</h3>
+            <p class="text-gray-400">Strength Coach</p>
+          </div>
+        </div>
+        <div class="bg-gray-900 rounded-lg overflow-hidden shadow-xl hover:scale-105 transition" data-anim>
+          <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8dfe?auto=format&fit=crop&w=600&q=80" class="w-full h-56 object-cover"/>
+          <div class="p-4">
+            <h3 class="text-xl font-semibold text-white">Riya Sen</h3>
+            <p class="text-gray-400">Yoga & Mobility</p>
+          </div>
+        </div>
+        <div class="bg-gray-900 rounded-lg overflow-hidden shadow-xl hover:scale-105 transition" data-anim>
+          <img src="https://images.unsplash.com/photo-1526403224732-5b2bfc0f6f6d?auto=format&fit=crop&w=600&q=80" class="w-full h-56 object-cover"/>
+          <div class="p-4">
+            <h3 class="text-xl font-semibold text-white">Vikram Rao</h3>
+            <p class="text-gray-400">HIIT Specialist</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-20 bg-black">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center text-red-500">Pricing Plans</h2>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6 bg-gray-900 rounded-lg text-center shadow-xl hover:scale-105 transition" data-anim>
+          <h3 class="text-2xl font-bold text-white">Starter</h3>
+          <p class="text-4xl font-extrabold text-red-500 mt-2">₹999</p>
+          <p class="mt-2 text-gray-400">Monthly access + 4 classes</p>
+          <button onclick="openWhatsApp('I want the Starter Plan!')" class="mt-4 px-6 py-2 bg-red-600 rounded-lg text-white hover:bg-red-500 transition">Buy Now</button>
+        </div>
+        <div class="p-6 bg-gray-900 rounded-lg text-center shadow-xl hover:scale-105 transition" data-anim>
+          <h3 class="text-2xl font-bold text-white">Pro</h3>
+          <p class="text-4xl font-extrabold text-red-500 mt-2">₹1999</p>
+          <p class="mt-2 text-gray-400">PT + Nutrition Plan</p>
+          <button onclick="openWhatsApp('I want the Pro Plan!')" class="mt-4 px-6 py-2 bg-red-600 rounded-lg text-white hover:bg-red-500 transition">Buy Now</button>
+        </div>
+        <div class="p-6 bg-gray-900 rounded-lg text-center shadow-xl hover:scale-105 transition" data-anim>
+          <h3 class="text-2xl font-bold text-white">Elite</h3>
+          <p class="text-4xl font-extrabold text-red-500 mt-2">₹3499</p>
+          <p class="mt-2 text-gray-400">Unlimited + Premium Perks</p>
+          <button onclick="openWhatsApp('I want the Elite Plan!')" class="mt-4 px-6 py-2 bg-red-600 rounded-lg text-white hover:bg-red-500 transition">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 bg-gray-950">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold text-red-500">Contact Us</h2>
+      <p class="mt-4 text-gray-400">Ready to transform your life? Message us now!</p>
+      <button onclick="openWhatsApp()" class="mt-6 px-6 py-3 bg-green-500 text-black font-semibold rounded-lg hover:bg-green-400 transition">Chat on WhatsApp</button>
+    </div>
+  </section>
+
+  <!-- FLOATING CTA -->
+  <div class="whatsapp-cta">
+    <button onclick="openWhatsApp()" class="flex items-center gap-3 px-5 py-3 rounded-full bg-green-500 text-black font-bold shadow-lg pulse hover:bg-green-400 transition">
+      💬 Chat
+    </button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="py-6 bg-black border-t border-gray-800 text-center text-gray-500 text-sm">
+    © <span id="year"></span> XYZGYM — All Rights Reserved.
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const MY_WHATSAPP = '917003028498';
+    const DEFAULT_MSG = 'Hi! I saw your website and want to know more.';
+
+    function openWhatsApp(message) {
+      const text = encodeURIComponent(message || DEFAULT_MSG);
+      const link = `https://wa.me/${MY_WHATSAPP}?text=${text}`;
+      window.location.href = link;
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Hero Animation
+    const hero = document.getElementById('hero-title');
+    hero.innerHTML = hero.textContent.replace(/([^\s])/g, '<span>$1</span>');
+    anime.timeline({ easing: 'easeOutExpo' })
+      .add({ targets: '#hero-title span', translateY: [40,0], opacity: [0,1], duration: 900, delay: anime.stagger(40) });
+
+    // Reveal Animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          anime({ targets: entry.target, translateY: [20,0], opacity: [0,1], duration: 700, easing: 'easeOutExpo' });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('[data-anim]').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
